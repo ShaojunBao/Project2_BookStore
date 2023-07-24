@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+<h2>Add a New Book</h2>
+<form action="/books" method="post" enctype="multipart/form-data">
+    <label>Title:
+        <input type="text" name="title" required>
+    </label><br>
+    <label>Author:
+        <input type="text" name="author" required>
+    </label> 
+    <label>Publisher:
+        <input type="text" name="publisher" required>
+    </label> 
+    <label>Published Date:
+        <input type="date" name="published_date" required>
+    </label><br>
+    <label>Category:
+        <select name="category">
+            <option value="Adults">Adults</option>
+            <option value="Kids">Kids</option>
+        </select>
+    </label>
+    <label>Price:
+        <input type="number" name="price" min="10" max="999" required></input>
+    </label><br>
+    <label>Summary:
+        <textarea name="summary" minlength="20" maxlength="500" required></textarea>
+    </label><br>
+    <label>Book Cover Image:
+        <input type="file" name="image" accept="image/*" readonly>
+    </label>
+    <button type="submit">Add Books</button>
+</form>
+
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<h2>Books for Kids</h2>
+
+<% books.forEach(function(book) { %>
+    <div class="book">
+        <h3><%= book.title %></h3>
+        <img src="<%= book.imagePath %>" alt="<%= book.title %> Cover Image" />
+        <p>Author: <%= book.author %></p>
+        <p>Publisher: <%= book.publisher %></p>
+        <p>Published Date: <%= book.published_date.toDateString() %></p>
+        <p>Price: <%= book.price %></p>
+        <p>Summary: <%= book.summary %></p>
+    </div>
+<% }) %>
+
+<%- include('../partials/footer') %>
