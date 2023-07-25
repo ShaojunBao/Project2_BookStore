@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+<div class="show-container">
+    <div class="section">
+        <h2><%= book.title %></h2>
+        <img src="<%= book.imagePath %>" alt="<%= book.title %> Cover Image" />
+        <ul>
+            <li>Author: <%= book.author %></li>
+            <li>Publisher: <%= book.publisher %></li>
+            <li>Published Date: <%= book.published_date %></li>
+            <li>Summary: <%= book.summary %></li>
+            <li>Price: $<%= Number(book.price).toFixed(2) %></li>
+        </ul>
+    </div>
+    
+    <!--comment and rating below-->
+    <br><br><h2>Reviews</h2>
+    <form id="add-review-form" method="POST" action="/books/<%=book._id%>/details">
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content"></textarea><br>
+        <label for="rating">Rating (1-5):</label><br>
+        <input id="rating" name="rating" type="number" min="1" max="5"><br>
+        <button type="submit">Submit Review</button>
+    </form>
+    <% if (book.details.length) { %>
+      <table class="reviews-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Review</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+    <% book.details.forEach(function(detail) { %>
+      <tr class="review">
+          <td><%= detail.createdAt.toLocaleDateString() %></td>
+          <td><%= detail.content %></td>
+          <td><%= detail.rating %></td>
+      </tr>
+  <% }) %>
+</tbody>
+</table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
+
+<%- include('../partials/footer') %>

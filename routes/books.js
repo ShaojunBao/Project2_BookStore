@@ -14,7 +14,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
+
 router.get('/new', booksCtrl.new);
+//GET /books/:id(show the vital information and review of the book)
+
 
 // POST route for /books
 router.post('/', upload.single('image'), booksCtrl.create);
@@ -22,5 +26,9 @@ router.post('/', upload.single('image'), booksCtrl.create);
 //GET routes for /books/adults and /books/kids
 router.get('/adults', booksCtrl.showAdults);
 router.get('/kids', booksCtrl.showKids);
+//GET route for/:id
+router.get('/:id', booksCtrl.show);
+
+
 
 module.exports = router;

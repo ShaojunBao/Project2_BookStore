@@ -11,6 +11,7 @@ require('./config/database');
 
 const indexRouter = require('./routes/index');
 const booksRouter = require('./routes/books');
+const detailsRouter = require('./routes/details');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
+app.use('/', detailsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

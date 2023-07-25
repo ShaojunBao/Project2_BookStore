@@ -2,7 +2,8 @@ module.exports ={
     new: newBook,
     create,
     showAdults,
-    showKids
+    showKids,
+    show
 }
 
 const Book = require('../models/book')
@@ -36,3 +37,15 @@ async function showKids(req,res){
     const books = await Book.find({category: 'Kids'});
     res.render('books/kids',{books:books})
 }
+
+//Function to show the details
+async function show(req,res){
+    try{
+        const book = await Book.findById(req.params.id);
+        res.render('books/show', {book});
+    } catch(err){
+        console.log(err);
+    }
+}
+
+//Function to get the details of the book

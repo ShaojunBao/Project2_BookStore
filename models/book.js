@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+// Details Schema
+const detailsSchema = new Schema({
+    content: {type: String, required: true},
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        default:5
+    }
+},{
+    timestamps:true
+});
+
 const bookSchema = new Schema({
     title: {
         type: String,
@@ -42,7 +55,8 @@ const bookSchema = new Schema({
         },
         imagePath: {
             type: String
-        }
+        },
+        details: [detailsSchema]
     
     }, {
         timestamps: true
