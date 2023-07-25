@@ -32,14 +32,21 @@
           </tr>
         </thead>
         <tbody>
+          <% let total = 0 %>
     <% book.details.forEach(function(detail) { %>
+      <% total += detail.rating %>
       <tr class="review">
           <td><%= detail.createdAt.toLocaleDateString() %></td>
           <td><%= detail.content %></td>
           <td><%= detail.rating %></td>
       </tr>
   <% }) %>
+  <!--Display the avg-->
 </tbody>
+<tr>
+  <td colspan="2"></td>
+  <td><strong><%= (total / book.details.length).toFixed(1) %></strong></td>
+</tr>
 </table>
 <% } else { %>
   <h5>No Reviews Yet</h5>
