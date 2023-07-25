@@ -3,7 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const session = require('express-session');
+const methodOverride= require('method-override');
 
 require('dotenv').config();
 // connect to the database with AFTER the config vars are processed
@@ -12,6 +13,7 @@ require('./config/database');
 const indexRouter = require('./routes/index');
 const booksRouter = require('./routes/books');
 const detailsRouter = require('./routes/details');
+const cartsRouter = require('./routes/carts')
 
 const app = express();
 
@@ -24,10 +26,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'I have no secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: 'auto' } // or simply remove this line if you're running locally
+}))
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/', detailsRouter);
+app.use('/carts',cartsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

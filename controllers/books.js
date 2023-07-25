@@ -48,4 +48,3 @@ async function show(req,res){
     }
 }
 
-//Function to get the details of the book

@@ -1,0 +1,16 @@
+<%- include('../partials/header') %>
+
+<h1>Your Cart</h1>
+
+<% cart.forEach(function(item) { %>
+  <div class="cart-item">
+    <img src="<%= item.imagePath %>" alt="<%= item.title %> Cover Image" />
+    <h2><%= item.title %></h2>
+    <p>Price: <%= Number(item.price).toFixed(2) %></p>
+    <form method="POST" action="/carts/<%= item._id %>?_method=DELETE">
+        <button type="submit">Remove</button>
+    </form>
+  </div>
+<% }) %>
+
+<%- include('../partials/footer') %>
