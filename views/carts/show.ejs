@@ -2,7 +2,9 @@
 
 <h1>Your Cart</h1>
 
+<% let total=0 %>
 <% cart.forEach(function(item) { %>
+  <% total+= item.price %>
   <div class="cart-item">
     <img src="<%= item.imagePath %>" alt="<%= item.title %> Cover Image" />
     <h2><%= item.title %></h2>
@@ -11,6 +13,11 @@
         <button type="submit">Remove</button>
     </form>
   </div>
-<% }) %>
 
-<%- include('../partials/footer') %>
+<% }) %>
+  <p>Total Price is: <strong>$<%= Number(total).toFixed(2) %></strong></p>
+  <form method="POST" action="/carts/checkout">
+    <button id="submit" type="submit">Place Your Order</button>
+  </form>
+  
+  <%- include('../partials/footer') %>

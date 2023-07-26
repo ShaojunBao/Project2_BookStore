@@ -3,7 +3,7 @@
 <h2>Books for Kids</h2>
 
 <% books.forEach(function(book) { %>
-    <div class="book">
+    <div class="kids">
         <h3><a href="/books/<%= book._id %>"><%= book.title %></a></h3>
         <img src="<%= book.imagePath %>" alt="<%= book.title %> Cover Image" />
         <p>Author: <%= book.author %></p>
