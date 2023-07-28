@@ -192,3 +192,24 @@ textarea{
 .book-form button:hover{
   background-color: #007b9a;
 }
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.login img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}

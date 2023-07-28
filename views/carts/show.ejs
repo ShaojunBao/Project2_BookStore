@@ -15,9 +15,14 @@
   </div>
 
 <% }) %>
+
+<% if (cart.length) { %>
   <p>Total Price is: <strong>$<%= Number(total).toFixed(2) %></strong></p>
   <form method="POST" action="/carts/checkout">
     <button id="submit" type="submit">Place Your Order</button>
   </form>
+  <% } else { %>
+    <h5>Cart is empty</h5>
+  <% } %>
   
   <%- include('../partials/footer') %>

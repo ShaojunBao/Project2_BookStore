@@ -15,7 +15,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
 router.get('/new', booksCtrl.new);
 //GET /books/:id(show the vital information and review of the book)
 

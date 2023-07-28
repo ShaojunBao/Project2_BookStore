@@ -10,11 +10,17 @@
         <nav class="navbar">
             <a href="/" class="navbar-brand">Book Store</a>
             <div class="navbar-links">
-                <a href="/">Home</a>
                 <a href="/books/adults">Books for Adults</a>
                 <a href="/books/kids">Books for Kids</a>
-                <a href="/books/new">Add Books</a>
-                <a href="/carts">Cart</a>
+                <% if (user) { %>
+                    <!-- Links for logged in users -->
+                    <a href="/books/new">Add Books</a>
+                    <a href="/carts">Cart</a>
+                    <a href="/logout" class="logout">LOG OUT</a>
+                <% } else { %>
+                    <!-- Links for guests -->
+                    <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+                <% } %>
             </div>
         </nav>
 
