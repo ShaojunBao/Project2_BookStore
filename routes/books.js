@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const booksCtrl = require('../controllers/books.js');
+const ensureLoggedIn = require('../config/ensureLoggedIn.js');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -15,19 +16,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-router.get('/new', booksCtrl.new);
-//GET /books/:id(show the vital information and review of the book)
-
-
-// POST route for /books
+router.get('/new',ensureLoggedIn,booksCtrl.new);
 router.post('/', upload.single('image'), booksCtrl.create);
-
-//GET routes for /books/adults and /books/kids
 router.get('/adults', booksCtrl.showAdults);
 router.get('/kids', booksCtrl.showKids);
-//GET route for/:id
-router.get('/:id', booksCtrl.show);
-
-
+router.get('/:id', booksCtrl.show); 
 
 module.exports = router;

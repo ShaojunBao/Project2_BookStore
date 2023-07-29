@@ -21,42 +21,59 @@
     </form>
     
     <!--comment and rating below-->
-    <br><br><h2>Reviews</h2>
-    <form id="add-review-form" method="POST" action="/books/<%=book._id%>/details">
-        <label for="content">Content:</label><br>
-        <textarea id="content" name="content"></textarea><br>
-        <label for="rating">Rating (1-5):</label><br>
-        <input id="rating" name="rating" type="number" min="1" max="5"><br>
-        <button type="submit">Submit Review</button>
-    </form>
+
+    <% if (user) { %>
+      <form id="add-review-form" method="POST" action="/books/<%=book._id%>/details">
+          <label for="content">Content:</label><br>
+          <textarea id="content" name="content"></textarea><br>
+          <label for="rating">Rating (1-5):</label><br>
+          <input id="rating" name="rating" type="number" min="1" max="5"><br>
+          <button type="submit">Submit Review</button>
+      </form>
+  <% } else { %>
+      <p>You must be logged in to post a review.</p>
+  <% } %>
+
+  <!--Show review and rating -->
     <% if (book.details.length) { %>
       <table class="reviews-table">
         <thead>
           <tr>
+            <th>User</th>
             <th>Date</th>
             <th>Review</th>
             <th>Rating</th>
+            <th>Action</th>
+              <!-- Additional column for the delete button -->
           </tr>
         </thead>
         <tbody>
           <% let total = 0 %>
-    <% book.details.forEach(function(detail) { %>
-      <% total += detail.rating %>
-      <tr class="review">
-          <td><%= detail.createdAt.toLocaleDateString() %></td>
-          <td><%= detail.content %></td>
-          <td><%= detail.rating %></td>
-      </tr>
-  <% }) %>
-  <!--Display the avg-->
-</tbody>
-<tr>
-  <td colspan="2"></td>
-  <td><strong><%= (total / book.details.length).toFixed(1) %></strong></td>
-</tr>
-</table>
-<% } else { %>
-  <h5>No Reviews Yet</h5>
-<% } %>
+          <% book.details.forEach(function(detail) { %>
+            <% total += detail.rating %>
+            <tr class="review">
+              <td class="review-user"><img alt="avatar" src="<%= detail.userAvatar %>" referrerpolicy="no-referrer" ><%= detail.userName %></td>
+              <td><%= detail.createdAt.toLocaleDateString() %></td>
+              <td><%= detail.content %></td>
+              <td><%= detail.rating %></td>
+              <td>
+                <% if (user?._id.equals(detail.user)) { %>
+                  <form action="/details/<%= detail._id %>?_method=DELETE" method="POST">
+                    <button type="submit">X</button>
+                  </form>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+          <!--Display the avg-->
+        </tbody>
+        <tr>
+          <td colspan="3"></td>  <!-- Increase the colspan by one to account for the new column -->
+          <td><strong><%= (total / book.details.length).toFixed(1) %></strong></td>
+        </tr>
+      </table>
+    <% } else { %>
+      <h5>No Reviews Yet</h5>
+    <% } %>
 
 <%- include('../partials/footer') %>

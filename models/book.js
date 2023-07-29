@@ -8,10 +8,17 @@ const detailsSchema = new Schema({
         min: 1,
         max: 5,
         default:5
-    }
-},{
-    timestamps:true
-});
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
+      userName: String,
+      userAvatar: String
+    }, {
+      timestamps: true
+    });
 
 const bookSchema = new Schema({
     title: {
