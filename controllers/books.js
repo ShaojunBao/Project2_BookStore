@@ -3,7 +3,8 @@ module.exports ={
     create,
     showAdults,
     showKids,
-    show
+    show,
+    search
 }
 
 const Book = require('../models/book')
@@ -43,6 +44,19 @@ async function show(req,res){
     try{
         const book = await Book.findById(req.params.id);
         res.render('books/show', {book});
+    } catch(err){
+        console.log(err);
+    }
+}
+
+//Functon to handle the search request
+async function search(req,res){
+    try{
+        const query = req.query.query;
+        const books = await Book.find({
+            $text: {$search: query}
+        });
+        res.render('books/search', {books, query});
     } catch(err){
         console.log(err);
     }

@@ -1,14 +1,17 @@
 <%- include('../partials/header') %>
 
-<h2>Books for Kids</h2>
-
-<% books.forEach(function(book) { %>
-    <div class="kids">
-        <h3><a href="/books/<%= book._id %>"><%= book.title %></a></h3>
-        <img src="<%= book.imagePath %>" alt="<%= book.title %> Cover Image" />
-        <p>Author: <%= book.author %></p>
-        <p>Price: $<%= Number(book.price).toFixed(2) %></p>
+<div class="container">
+    <h2>Books for Kids</h2>
+    <div class="bookshelf-row">
+        <% books.forEach(function(book) { %>
+            <div class="book">
+                <h3><a href="/books/<%= book._id %>"><%= book.title %></a></h3>
+                <img src="<%= book.imagePath %>" alt="<%= book.title %> Cover Image" />
+                <p>Author: <%= book.author %></p>
+                <p>Price: $<%= Number(book.price).toFixed(2) %></p>
+            </div>
+        <% }) %>
     </div>
-<% }) %>
+</div>
 
 <%- include('../partials/footer') %>

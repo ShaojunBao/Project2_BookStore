@@ -18,8 +18,13 @@ const upload = multer({ storage: storage });
 
 router.get('/new',ensureLoggedIn,booksCtrl.new);
 router.post('/', upload.single('image'), booksCtrl.create);
+//GET /adults
 router.get('/adults', booksCtrl.showAdults);
+//GET /kids
 router.get('/kids', booksCtrl.showKids);
+//GET /search
+router.get('/search', booksCtrl.search);
 router.get('/:id', booksCtrl.show); 
+
 
 module.exports = router;

@@ -1,8 +1,10 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Georgia', serif;
   margin: 0;
   padding: 0 0 50px 0;
   background-color: #f4f4f4;
+  background-image: url('paper-texture.jpg');
+  background-size: cover;
 }
 
 .navbar {
@@ -223,4 +225,46 @@ textarea{
 .review-user img {
   border-radius: 50%;
   height: 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.categories a {
+  margin-right: 10px;
+}
+
+.bookshelf-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.bookshelf-row .book {
+  text-align: center;
+}
+
+.bookshelf-row .book img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.bookshelf-row .book h3 {
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+.bookshelf-row .book p {
+  font-size: 0.8em;
+  color: #666;
 }
