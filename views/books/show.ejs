@@ -43,7 +43,8 @@
             <th>Date</th>
             <th>Review</th>
             <th>Rating</th>
-            <th>Action</th>
+            <th>Edit</th>
+            <th>Delete</th>
               <!-- Additional column for the delete button -->
           </tr>
         </thead>
@@ -56,6 +57,14 @@
               <td><%= detail.createdAt.toLocaleDateString() %></td>
               <td><%= detail.content %></td>
               <td><%= detail.rating %></td>
+              <td>
+                <% if (user?._id.equals(detail.user)) { %>
+                  <form action="/details/<%= detail._id %>?_method=PUT" method="POST">
+                    <input name="content" value="<%= detail.content %>">
+                    <button type="submit">UPDATE REVIEW</button>
+                </form>
+                <% } %>
+              </td>
               <td>
                 <% if (user?._id.equals(detail.user)) { %>
                   <form action="/details/<%= detail._id %>?_method=DELETE" method="POST">

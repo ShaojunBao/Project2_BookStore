@@ -9,4 +9,8 @@ router.post('/books/:id/details',ensureLoggedIn,detailsCtrl.create);
 //DELETE/details(reviews)
 router.delete('/details/:id',ensureLoggedIn,detailsCtrl.delete);
 
+//PUT/details/:id
+router.put('/details/:id', ensureLoggedIn, detailsCtrl.update);
+
+
 module.exports = router;

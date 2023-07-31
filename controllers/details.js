@@ -1,6 +1,7 @@
 module.exports = {
     create,
-    delete: deleteReview
+    delete: deleteReview,
+    update
 }
 
 const Book = require('../models/book');
@@ -32,3 +33,14 @@ async function deleteReview(req,res){
     await book.save();
     res.redirect(`/books/${book._id}`);
 }
+
+
+async function update(req,res){
+    const book = await Book.findOne({'details._id' : req.params.id, 'details.user': req.user._id})
+    if (!book) return res.redirect('/books');
+    const detail = book.details.id(req.params.id);
+    detail.content = req.body.content;
+    await book.save();
+    res.redirect(`/books/${book._id}`);
+}
+
